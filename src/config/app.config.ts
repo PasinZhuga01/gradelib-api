@@ -1,21 +1,21 @@
-import configSchema from './app.config.schema'
+import configSchema from './app.config.schema';
 
 const config = configSchema.parse({
-    nodeEnv: process.env.NODE_ENV,
-    port: Number(process.env.PORT),
+  nodeEnv: process.env['NODE_ENV'],
+  port: Number(process.env['PORT']),
 
-    orm: {
-        type: 'postgres',
-        synchronize: false,
+  orm: {
+    type: 'postgres',
+    synchronize: false,
 
-        host: process.env.DATABASE_HOST,
-        port: Number(process.env.DATABASE_PORT),
-        username: process.env.DATABASE_USERNAME,
-        password: process.env.DATABASE_PASSWORD,
-        database: process.env.DATABASE_NAME
-    }
+    host: process.env['DATABASE_HOST'],
+    port: Number(process.env['DATABASE_PORT']),
+    username: process.env['DATABASE_USERNAME'],
+    password: process.env['DATABASE_PASSWORD'],
+    database: process.env['DATABASE_NAME'],
+  },
 });
 
 const isProduction = config.nodeEnv === 'production';
 
-export default { ...config, isProduction }
+export default { ...config, isProduction };
