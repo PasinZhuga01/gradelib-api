@@ -1,5 +1,6 @@
 import { RequestContextMiddleware } from '@common/middlewares/request-context.middleware';
 import config from '@config/app.config';
+import { SystemModule } from '@modules/system/system.module';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -9,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       ...config.orm,
       autoLoadEntities: true,
     }),
+    SystemModule,
   ],
 })
 export class AppModule implements NestModule {

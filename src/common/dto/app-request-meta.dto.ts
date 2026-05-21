@@ -1,12 +1,13 @@
+import { DATE_EXAMPLE, PATH_EXAMPLE, UUID_EXAMPLE } from '@common/constants/common.constants';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class AppRequestMetaDto {
-  @ApiProperty({ description: 'Unique request identifier' })
+  @ApiProperty({ example: UUID_EXAMPLE, description: 'Unique request identifier' })
   public id!: string;
 
-  @ApiProperty({ description: 'Request path' })
+  @ApiProperty({ example: PATH_EXAMPLE, description: 'Request path' })
   public path!: string;
 
-  @ApiProperty({ description: 'Timestamp of when request processing began' })
+  @ApiProperty({ example: DATE_EXAMPLE, description: 'Timestamp of when request processing began' })
   public startedAt!: Date;
 }
