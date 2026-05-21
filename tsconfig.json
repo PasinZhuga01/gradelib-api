@@ -35,6 +35,11 @@
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
     "skipLibCheck": true,
-    "types": ["jest", "mocha"]
+    "types": ["jest", "mocha"],
+    "paths": {
+      "@common/*": ["./src/common/*"],
+      "@config/*": ["./src/config/*"],
+      "@modules/*": ["./src/modules/*"]
+    }
   }
 }

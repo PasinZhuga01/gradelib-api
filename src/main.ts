@@ -1,9 +1,9 @@
-import './common/setup/env.setup';
+import '@common/setup/env.setup';
 
+import config from '@config/app.config';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
-import config from './config/app.config';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
