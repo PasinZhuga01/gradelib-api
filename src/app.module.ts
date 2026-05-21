@@ -1,5 +1,6 @@
+import { RequestContextMiddleware } from '@common/middlewares/request-context.middleware';
 import config from '@config/app.config';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
@@ -10,4 +11,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  public configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(RequestContextMiddleware).forRoutes('*');
+  }
+}

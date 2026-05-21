@@ -1,5 +1,6 @@
 import '@common/setup/env.setup';
 
+import { ResponseInterceptor } from '@common/interceptors/response.interceptor';
 import config from '@config/app.config';
 import swaggerConfig from '@config/swagger.config';
 import { NestFactory } from '@nestjs/core';
@@ -10,6 +11,8 @@ import { AppModule } from './app.module';
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   const document = SwaggerModule.createDocument(app, swaggerConfig);
+
+  app.useGlobalInterceptors(new ResponseInterceptor());
 
   SwaggerModule.setup('api/docs', app, document);
 
