@@ -4,6 +4,10 @@ const config = configSchema.parse({
   nodeEnv: process.env['NODE_ENV'],
   port: Number(process.env['PORT']),
 
+  cors: {
+    origins: (process.env['CORS_ORIGINS'] ?? '').split(',').map((origin) => origin.trim()).filter(Boolean)
+  },
+
   orm: {
     type: 'postgres',
     synchronize: false,

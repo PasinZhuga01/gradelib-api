@@ -14,6 +14,8 @@ async function bootstrap(): Promise<void> {
 
   app.useGlobalInterceptors(new ResponseInterceptor());
 
+  app.enableCors({origin: config.cors.origins, credentials: true});
+
   SwaggerModule.setup('api/docs', app, document);
 
   await app.listen(config.port);
