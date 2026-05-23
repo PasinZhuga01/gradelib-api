@@ -8,6 +8,12 @@ export default z.object({
     origins: z.array(z.string()),
   }),
 
+  pgAdmin: z.object({
+    email: z.email(),
+    password: z.string(),
+    port: z.number(),
+  }),
+
   orm: z.object({
     type: z.literal('postgres'),
     synchronize: z.literal(false),

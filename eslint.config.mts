@@ -94,7 +94,7 @@ export default [
       // ──────────────────────────────────
       // 3. General style rules
       // ──────────────────────────────────
-      "no-console": "warn",
+      "no-console": "off",
       "no-debugger": "error",
       eqeqeq: ["error", "always"],
       "@typescript-eslint/sort-type-constituents": "error",

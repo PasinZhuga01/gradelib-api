@@ -11,6 +11,12 @@ const config = configSchema.parse({
       .filter(Boolean),
   },
 
+  pgAdmin: {
+    email: process.env['PGADMIN_EMAIL'],
+    password: process.env['PGADMIN_PASSWORD'],
+    port: Number(process.env['PGADMIN_PORT']),
+  },
+
   orm: {
     type: 'postgres',
     synchronize: false,
@@ -25,4 +31,10 @@ const config = configSchema.parse({
 
 const isProduction = config.nodeEnv === 'production';
 
-export default { ...config, isProduction };
+const apiPrefix = 'api';
+
+const docsPath = `${apiPrefix}/docs`;
+const docsJsonPath = `${docsPath}-json`;
+const docs = { path: docsPath, jsonPath: docsJsonPath };
+
+export default { ...config, isProduction, apiPrefix, docs };
