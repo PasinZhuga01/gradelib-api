@@ -1,7 +1,8 @@
 import '@common/setup/env.setup';
 
-import config from '@config/app.config';
 import { DataSource } from 'typeorm';
+
+import config from '@config/app.config';
 
 const { orm, isProduction } = config;
 

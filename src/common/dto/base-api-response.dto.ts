@@ -1,5 +1,6 @@
-import { DATE_EXAMPLE } from '@common/constants/common.constants';
 import { ApiProperty } from '@nestjs/swagger';
+
+import { DATE_EXAMPLE } from '@common/constants/common.constants';
 
 import { AppRequestMetaDto } from './app-request-meta.dto';
 

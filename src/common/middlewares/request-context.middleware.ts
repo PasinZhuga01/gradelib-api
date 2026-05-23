@@ -1,6 +1,8 @@
-import { AppRequest } from '@common/types/request.types';
-import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Response } from 'express';
+
+import { Injectable, NestMiddleware } from '@nestjs/common';
+
+import { AppRequest } from '@common/types/request.types';
 
 @Injectable()
 export class RequestContextMiddleware implements NestMiddleware {

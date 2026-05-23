@@ -5,7 +5,10 @@ const config = configSchema.parse({
   port: Number(process.env['PORT']),
 
   cors: {
-    origins: (process.env['CORS_ORIGINS'] ?? '').split(',').map((origin) => origin.trim()).filter(Boolean)
+    origins: (process.env['CORS_ORIGINS'] ?? '')
+      .split(',')
+      .map((origin) => origin.trim())
+      .filter(Boolean),
   },
 
   orm: {

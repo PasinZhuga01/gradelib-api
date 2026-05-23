@@ -1,6 +1,7 @@
-import { createApiResponseDto } from '@common/utils/response.utils';
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+
+import { createApiResponseDto } from '@common/utils/response.utils';
 
 import { GetHealthDto } from './dto/get-health.dto';
 

@@ -1,10 +1,11 @@
 import '@common/setup/env.setup';
 
+import { NestFactory } from '@nestjs/core';
+import { SwaggerModule } from '@nestjs/swagger';
+
 import { ResponseInterceptor } from '@common/interceptors/response.interceptor';
 import config from '@config/app.config';
 import swaggerConfig from '@config/swagger.config';
-import { NestFactory } from '@nestjs/core';
-import { SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 
@@ -14,7 +15,7 @@ async function bootstrap(): Promise<void> {
 
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  app.enableCors({origin: config.cors.origins, credentials: true});
+  app.enableCors({ origin: config.cors.origins, credentials: true });
 
   SwaggerModule.setup('api/docs', app, document);
 

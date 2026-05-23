@@ -1,8 +1,9 @@
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { RequestContextMiddleware } from '@common/middlewares/request-context.middleware';
 import config from '@config/app.config';
 import { SystemModule } from '@modules/system/system.module';
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [

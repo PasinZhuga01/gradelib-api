@@ -1,5 +1,6 @@
-import config from '@config/app.config';
 import { DocumentBuilder } from '@nestjs/swagger';
+
+import config from '@config/app.config';
 
 export default new DocumentBuilder()
   .setTitle('GradeLib API')

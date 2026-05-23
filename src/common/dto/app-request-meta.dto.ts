@@ -1,5 +1,6 @@
-import { DATE_EXAMPLE, PATH_EXAMPLE, UUID_EXAMPLE } from '@common/constants/common.constants';
 import { ApiProperty } from '@nestjs/swagger';
+
+import { DATE_EXAMPLE, PATH_EXAMPLE, UUID_EXAMPLE } from '@common/constants/common.constants';
 
 export class AppRequestMetaDto {
   @ApiProperty({ example: UUID_EXAMPLE, description: 'Unique request identifier' })

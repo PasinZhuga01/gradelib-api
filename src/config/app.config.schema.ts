@@ -5,7 +5,7 @@ export default z.object({
   port: z.number(),
 
   cors: z.object({
-    origins: z.array(z.string())
+    origins: z.array(z.string()),
   }),
 
   orm: z.object({
