@@ -1,14 +1,16 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { createZodDto } from 'nestjs-zod';
+import z from 'zod';
 
-import { DATE_EXAMPLE, PATH_EXAMPLE, UUID_EXAMPLE } from '@common/constants/common.constants';
+import { DATETIME_ISO_EXAMPLE, PATH_EXAMPLE, UUID_EXAMPLE } from '@common/constants/common.constants';
+import { describeApiTarget } from '@common/utils/zod.utils';
 
-export class AppRequestMetaDto {
-  @ApiProperty({ example: UUID_EXAMPLE, description: 'Unique request identifier' })
-  public id!: string;
+export const appRequestMetaDtoSchema = z.object({
+  id: describeApiTarget(z.uuid(), { example: UUID_EXAMPLE, description: 'Unique request identifier' }),
+  path: describeApiTarget(z.string(), { example: PATH_EXAMPLE, description: 'Request path' }),
+  startedAt: describeApiTarget(z.iso.datetime(), {
+    example: DATETIME_ISO_EXAMPLE,
+    description: 'Timestamp of when request processing began',
+  }),
+});
 
-  @ApiProperty({ example: PATH_EXAMPLE, description: 'Request path' })
-  public path!: string;
-
-  @ApiProperty({ example: DATE_EXAMPLE, description: 'Timestamp of when request processing began' })
-  public startedAt!: Date;
-}
+export class AppRequestMetaDto extends createZodDto(appRequestMetaDtoSchema) {}

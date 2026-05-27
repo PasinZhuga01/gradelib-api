@@ -15,8 +15,8 @@ export class ResponseInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map((data: unknown) => ({
         data,
-        finishedAt: new Date(),
-        requestMeta: { id, path, startedAt },
+        finishedAt: new Date().toISOString(),
+        requestMeta: { id, path, startedAt: startedAt.toISOString() },
       })),
     );
   }

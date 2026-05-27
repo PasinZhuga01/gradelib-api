@@ -1,15 +1,18 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { createZodDto } from 'nestjs-zod';
+import z from 'zod';
 
-import { DATE_EXAMPLE } from '@common/constants/common.constants';
+import { DATETIME_ISO_EXAMPLE } from '@common/constants/common.constants';
+import { describeApiTarget } from '@common/utils/zod.utils';
 
-import { AppRequestMetaDto } from './app-request-meta.dto';
+import { appRequestMetaDtoSchema } from './app-request-meta.dto';
 
-export abstract class BaseApiResponseDto {
-  public abstract data: unknown;
+export const baseApiResponseDtoSchema = z.object({
+  data: z.unknown(),
+  finishedAt: describeApiTarget(z.iso.datetime(), {
+    example: DATETIME_ISO_EXAMPLE,
+    description: 'Timestamp of when the response was generated',
+  }),
+  requestMeta: describeApiTarget(appRequestMetaDtoSchema, { description: 'Request meta' }),
+});
 
-  @ApiProperty({ example: DATE_EXAMPLE, description: 'Timestamp of when the response was generated' })
-  public finishedAt!: Date;
-
-  @ApiProperty({ type: () => AppRequestMetaDto })
-  public requestMeta!: AppRequestMetaDto;
-}
+export class BaseApiResponseDto extends createZodDto(baseApiResponseDtoSchema) {}

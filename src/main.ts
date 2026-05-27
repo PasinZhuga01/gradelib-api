@@ -1,5 +1,7 @@
 import '@common/setup/env.setup';
 
+import { cleanupOpenApiDoc, ZodValidationPipe } from 'nestjs-zod';
+
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
 
@@ -14,6 +16,8 @@ function generateLocalHostUrl(port: number, path: string = ''): string {
 }
 
 async function logStartup(): Promise<void> {
+  console.log();
+
   if (config.isProduction) {
     console.log(`✅ Application started successfully`);
     console.log(`✅ Environment: ${config.nodeEnv}`);
@@ -26,10 +30,14 @@ async function logStartup(): Promise<void> {
     console.log(`✅ Swagger docs json: ${generateLocalHostUrl(config.port, config.docs.jsonPath)}`);
     console.log(`✅ pgAdmin: ${generateLocalHostUrl(config.pgAdmin.port)}`);
   }
+
+  console.log();
 }
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(new ZodValidationPipe());
 
   app.useGlobalInterceptors(new ResponseInterceptor());
 
@@ -37,7 +45,7 @@ async function bootstrap(): Promise<void> {
 
   app.setGlobalPrefix(config.apiPrefix);
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  const document = cleanupOpenApiDoc(SwaggerModule.createDocument(app, swaggerConfig));
 
   SwaggerModule.setup(config.docs.path, app, document);
 

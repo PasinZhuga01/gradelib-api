@@ -6,7 +6,7 @@ import { BaseApiResponseDto } from '../dto/base-api-response.dto';
 export function createApiResponseDto<T>(dataClass: Type<T>): typeof BaseApiResponseDto {
   class ApiResponseDto extends BaseApiResponseDto {
     @ApiProperty({ type: () => dataClass })
-    public data!: T;
+    public override data!: T;
   }
 
   Object.defineProperty(ApiResponseDto, 'name', {
