@@ -14,6 +14,12 @@ export default z.object({
     port: z.number(),
   }),
 
+  redis: z.object({
+    host: z.string().min(1),
+    port: z.number().int().positive(),
+    password: z.string().min(1),
+  }),
+
   orm: z.object({
     type: z.literal('postgres'),
     synchronize: z.literal(false),

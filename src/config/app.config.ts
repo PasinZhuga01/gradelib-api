@@ -17,6 +17,12 @@ const config = configSchema.parse({
     port: Number(process.env['PGADMIN_PORT']),
   },
 
+  redis: {
+    host: process.env['REDIS_HOST'],
+    port: Number(process.env['REDIS_PORT']),
+    password: process.env['REDIS_PASSWORD'],
+  },
+
   orm: {
     type: 'postgres',
     synchronize: false,
