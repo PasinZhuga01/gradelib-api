@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Подтвердите ваш аккаунт - GradeLib</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Calibri;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f4f6fb;
+      padding: 40px 16px;
+      color: #1a2b6b;
+    }
+
+    .card {
+      max-width: 480px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 24px rgba(26, 43, 107, 0.08);
+    }
+
+    .header {
+      padding: 20px 40px 10px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      height: 40px;
+      width: auto;
+    }
+
+    .logo-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a2b6b;
+    }
+
+    .content {
+      padding: 30px 40px 36px;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a2b6b;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .greeting {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #1a2b6b;
+      margin-bottom: 32px;
+    }
+
+    .instruction {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #1a2b6b;
+      margin-bottom: 32px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 1px solid #d89400;
+      background-color: #f0a500;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 16px 64px;
+      border-radius: 5px;
+      letter-spacing: 0.4px;
+      transition: 0.25s;
+    }
+
+    .button:hover {
+      background-color: #fbab00;
+    }
+
+    .footer {
+      padding: 20px 40px 28px;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.6;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .footer-sign {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 520px) {
+      .header,
+      .content,
+      .footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .title {
+        font-size: 22px;
+      }
+
+      .button {
+        padding: 14px 32px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <span class="logo">
+        <img class="logo-icon" src="{{ assetsUrl }}/icon.png" alt="GradeLib" />
+        <span class="logo-name">GradeLib</span>
+      </span>
+    </div>
+
+    <div class="content">
+      <h1 class="title">Подтвердите ваш аккаунт</h1>
+
+      <p class="greeting">
+        Здравствуйте, {{ firstName }}!<br />
+        Благодарим за регистрацию на GradeLib!
+      </p>
+
+      <p class="instruction">Для завершения регистрации подтвердите email, нажав на кнопку ниже.</p>
+
+      <a 
+        href="{{ clientUrl }}/auth/register/confirm/{{ confirmationToken }}"
+        class="button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Подтвердить email
+      </a>
+    </div>
+
+    <div class="footer">
+      <p class="footer-note">Если вы не регистрировались на GradeLib, просто проигнорируйте это письмо</p>
+      <p class="footer-sign">С уважением, команда GradeLib</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -6,12 +6,8 @@ const config = configSchema.parse({
   nodeEnv: process.env['NODE_ENV'],
   port: Number(process.env['PORT']),
 
-  cors: {
-    origins: (process.env['CORS_ORIGINS'] ?? '')
-      .split(',')
-      .map((origin) => origin.trim())
-      .filter(Boolean),
-  },
+  clientUrl: process.env['CLIENT_URL'],
+  assetsUrl: process.env['ASSETS_URL'],
 
   mail: {
     from: process.env['MAIL_FROM'],
@@ -59,7 +55,9 @@ const docs = { path: docsPath, jsonPath: docsJsonPath };
 
 const mail = {
   ...config.mail,
-  templates: ensureMailTemplatesExist({}),
+  templates: ensureMailTemplatesExist({
+    signupConfirmation: './templates/signup-confirmation.hbs',
+  }),
 };
 
 export default { ...config, isProduction, apiPrefix, docs, mail };

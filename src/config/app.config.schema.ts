@@ -4,9 +4,8 @@ export default z.object({
   nodeEnv: z.enum(['development', 'production']),
   port: z.number(),
 
-  cors: z.object({
-    origins: z.array(z.string()),
-  }),
+  clientUrl: z.string().min(1),
+  assetsUrl: z.string().min(1),
 
   mail: z.object({
     from: z.email(),

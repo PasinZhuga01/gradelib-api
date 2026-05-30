@@ -21,11 +21,11 @@ async function logStartup(): Promise<void> {
   if (config.isProduction) {
     console.log(`✅ Application started successfully`);
     console.log(`✅ Environment: ${config.nodeEnv}`);
-    console.log(`✅ CORS: ${config.cors.origins}`);
+    console.log(`✅ Client: ${config.clientUrl}`);
   } else {
     console.log(`✅ Application is running on: ${generateLocalHostUrl(config.port)}`);
     console.log(`✅ Environment: ${config.nodeEnv}`);
-    console.log(`✅ CORS: ${config.cors.origins}`);
+    console.log(`✅ Client: ${config.clientUrl}`);
     console.log(`✅ Swagger docs: ${generateLocalHostUrl(config.port, config.docs.path)}`);
     console.log(`✅ Swagger docs json: ${generateLocalHostUrl(config.port, config.docs.jsonPath)}`);
     console.log(`✅ pgAdmin: ${generateLocalHostUrl(config.pgAdmin.port)}`);
@@ -42,7 +42,7 @@ async function bootstrap(): Promise<void> {
 
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  app.enableCors({ origin: config.cors.origins, credentials: true });
+  app.enableCors({ origin: config.clientUrl, credentials: true });
 
   app.setGlobalPrefix(config.apiPrefix);
 
