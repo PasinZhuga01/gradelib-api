@@ -29,6 +29,7 @@ async function logStartup(): Promise<void> {
     console.log(`✅ Swagger docs: ${generateLocalHostUrl(config.port, config.docs.path)}`);
     console.log(`✅ Swagger docs json: ${generateLocalHostUrl(config.port, config.docs.jsonPath)}`);
     console.log(`✅ pgAdmin: ${generateLocalHostUrl(config.pgAdmin.port)}`);
+    console.log(`✅ Mailpit: ${generateLocalHostUrl(config.mailpit.ports.web)}`);
   }
 
   console.log();

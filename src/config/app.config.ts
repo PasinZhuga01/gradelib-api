@@ -1,3 +1,5 @@
+import { ensureMailTemplatesExist } from '@common/utils/config.utils';
+
 import configSchema from './app.config.schema';
 
 const config = configSchema.parse({
@@ -11,6 +13,10 @@ const config = configSchema.parse({
       .filter(Boolean),
   },
 
+  mail: {
+    from: process.env['MAIL_FROM'],
+  },
+
   pgAdmin: {
     email: process.env['PGADMIN_EMAIL'],
     password: process.env['PGADMIN_PASSWORD'],
@@ -21,6 +27,14 @@ const config = configSchema.parse({
     host: process.env['REDIS_HOST'],
     port: Number(process.env['REDIS_PORT']),
     password: process.env['REDIS_PASSWORD'],
+  },
+
+  mailpit: {
+    host: process.env['MAILPIT_HOST'],
+    ports: {
+      smtp: Number(process.env['MAILPIT_SMTP_PORT']),
+      web: Number(process.env['MAILPIT_WEB_PORT']),
+    },
   },
 
   orm: {
@@ -43,4 +57,9 @@ const docsPath = `${apiPrefix}/docs`;
 const docsJsonPath = `${docsPath}-json`;
 const docs = { path: docsPath, jsonPath: docsJsonPath };
 
-export default { ...config, isProduction, apiPrefix, docs };
+const mail = {
+  ...config.mail,
+  templates: ensureMailTemplatesExist({}),
+};
+
+export default { ...config, isProduction, apiPrefix, docs, mail };

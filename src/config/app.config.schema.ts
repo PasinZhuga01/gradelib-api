@@ -8,6 +8,10 @@ export default z.object({
     origins: z.array(z.string()),
   }),
 
+  mail: z.object({
+    from: z.email(),
+  }),
+
   pgAdmin: z.object({
     email: z.email(),
     password: z.string(),
@@ -18,6 +22,14 @@ export default z.object({
     host: z.string().min(1),
     port: z.number().int().positive(),
     password: z.string().min(1),
+  }),
+
+  mailpit: z.object({
+    host: z.string().min(1),
+    ports: z.object({
+      smtp: z.number().int().positive(),
+      web: z.number().int().positive(),
+    }),
   }),
 
   orm: z.object({

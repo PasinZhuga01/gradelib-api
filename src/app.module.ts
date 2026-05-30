@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { RequestContextMiddleware } from '@common/middlewares/request-context.middleware';
 import config from '@config/app.config';
+import { MailModule } from '@modules/mail/mail.module';
 import { RedisModule } from '@modules/redis/redis.module';
 import { SystemModule } from '@modules/system/system.module';
 
@@ -12,6 +13,7 @@ import { SystemModule } from '@modules/system/system.module';
       ...config.orm,
       autoLoadEntities: true,
     }),
+    MailModule,
     RedisModule,
     SystemModule,
   ],
